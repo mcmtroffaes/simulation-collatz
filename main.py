@@ -24,8 +24,15 @@ def main() -> None:
     for start in start_points:
         plt.plot(list(sequence(start, size)))
 
-    plt.plot([1.96 * math.sqrt(i) for i in range(size)], color="black", linestyle='dashed', label="$\\pm 1.96\\sqrt{n}$")
-    plt.plot([-1.96 * math.sqrt(i) for i in range(size)], color="black", linestyle='dashed')
+    plt.plot(
+        [1.96 * math.sqrt(i) for i in range(size)],
+        color="black",
+        linestyle="dashed",
+        label="$\\pm 1.96\\sqrt{n}$",
+    )
+    plt.plot(
+        [-1.96 * math.sqrt(i) for i in range(size)], color="black", linestyle="dashed"
+    )
     plt.legend()
 
     plt.title("Collatz Sequences")
