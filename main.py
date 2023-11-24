@@ -3,13 +3,14 @@ import random
 from collections.abc import Iterable
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 
-def sequence(start: int, size: int) -> Iterable[int]:
+def sequence(start: int, size: int) -> Iterable[float]:
     n: int = start
+    a = -0.5 * math.log(0.75)  # drift
+    b = 0.5 * math.log(3)  # scale
     for i in range(size):
-        yield (math.log(n) - i * math.log(0.75) / 2 - math.log(start)) / (math.log(3) / 2)
+        yield (math.log(n) - math.log(start) + i * a) / b
         if n % 2:
             n = n // 2
         else:
@@ -25,13 +26,13 @@ def main() -> None:
         plt.plot([1.96 * math.sqrt(i) for i in range(size)], color="black")
         plt.plot([-1.96 * math.sqrt(i) for i in range(size)], color="black")
 
-    plt.title('Collatz Sequences')
+    plt.title("Collatz Sequences")
     plt.ylim(-3 * math.sqrt(size), 3 * math.sqrt(size))
-    plt.xlabel('Steps')
-    plt.ylabel('Value')
+    plt.xlabel("Steps")
+    plt.ylabel("Value")
     plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     random.seed(4)  # for reproducibility
     main()
