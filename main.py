@@ -6,15 +6,15 @@ import matplotlib.pyplot as plt
 
 
 def sequence(start: int, size: int) -> Iterable[float]:
-    n: int = start
-    a = -0.5 * math.log(0.75)  # drift
-    b = 0.5 * math.log(3)  # scale
-    for i in range(size):
-        yield (math.log(n) - math.log(start) + i * a) / b
-        if n % 2:
-            n = n // 2
+    x: int = start
+    alpha = -0.5 * math.log(0.75)  # drift
+    beta = 0.5 * math.log(3)  # scale
+    for n in range(size):
+        yield (math.log(x) - math.log(start) + n * alpha) / beta
+        if x % 2:
+            x = x // 2
         else:
-            n = (3 * n + 1) // 2
+            x = (3 * x + 1) // 2
 
 
 def main() -> None:
@@ -23,13 +23,15 @@ def main() -> None:
     size = 5000
     for start in start_points:
         plt.plot(list(sequence(start, size)))
-        plt.plot([1.96 * math.sqrt(i) for i in range(size)], color="black")
-        plt.plot([-1.96 * math.sqrt(i) for i in range(size)], color="black")
+
+    plt.plot([1.96 * math.sqrt(i) for i in range(size)], color="black", linestyle='dashed', label="$\\pm 1.96\\sqrt{n}$")
+    plt.plot([-1.96 * math.sqrt(i) for i in range(size)], color="black", linestyle='dashed')
+    plt.legend()
 
     plt.title("Collatz Sequences")
     plt.ylim(-3 * math.sqrt(size), 3 * math.sqrt(size))
-    plt.xlabel("Steps")
-    plt.ylabel("Value")
+    plt.xlabel("$n$")
+    plt.ylabel("$(\\log x_n-\\log x_0+ \\alpha n)/\\beta$")
     plt.show()
 
 
