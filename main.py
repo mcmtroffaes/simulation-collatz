@@ -63,5 +63,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    simple_plot()
     random.seed(8)  # for reproducibility
     main()
