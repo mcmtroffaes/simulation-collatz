@@ -31,7 +31,7 @@ def simple_plot() -> None:
     plt.xlabel("$t$")
     plt.ylabel("$x_t$")
     plt.grid()
-    plt.savefig("hailstone1.png")
+    plt.savefig("hailstone1.png", transparent=True)
 
 
 def main() -> None:
@@ -59,7 +59,7 @@ def main() -> None:
     plt.xlabel("$t$")
     plt.ylabel("$\\log x_t-\\log x_0 - \\mu t$")
     plt.grid()
-    plt.savefig("hailstone2.png")
+    plt.savefig("hailstone2.png", transparent=True)
 
 
 if __name__ == "__main__":
