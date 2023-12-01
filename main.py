@@ -29,7 +29,7 @@ def simple_plot() -> None:
     plt.plot(list(raw_sequence(10, size)), marker="o")
     plt.title("Hailstone numbers")
     plt.xlabel("$t$")
-    plt.ylabel("$x_t$")
+    plt.ylabel("$x(t)$")
     plt.grid()
     plt.savefig("hailstone1.png", transparent=True)
 
@@ -57,7 +57,7 @@ def main() -> None:
     plt.title("Hailstone numbers")
     plt.ylim(-3 * sigma * math.sqrt(size), 3 * sigma * math.sqrt(size))
     plt.xlabel("$t$")
-    plt.ylabel("$\\log x_t-\\log x_0 - \\mu t$")
+    plt.ylabel("$\\log x(t)-\\log x(0) - \\mu t$")
     plt.grid()
     plt.savefig("hailstone2.png", transparent=True)
 
